@@ -1,74 +1,46 @@
 <template>
-  <h3>动态绑定样式--class- 绑定对象</h3>
-  <p :class="{ color: true, color_green: colorObj }">hello word</p>
-  <button @click="changeObj">修改</button>
-  <hr />
-
-  <h3>动态绑定样式--class- 绑定数组</h3>
-  <p :class="[colorArray ? 'color_green' : 'color_red']">hello word</p>
-  <button @click="colorArray = !colorArray">更新样式</button>
-  <hr />
-
-  <h3>动态绑定样式--class- 绑定字符串</h3>
-  <p class="colorString">hello word</p>
-  <hr />
-
-  <h3>深度样式 -- 父组件修改子组件样式</h3>
-  <p>注意： 需要子组件外面包一层div</p>
   <div>
-    <Home />
-  </div>
-  <hr />
+    <!-- vue3组件通信 --- props  父--子 -->
+    <Home :list="list"></Home>
+    <hr />
 
-  <h3>v-bind绑定样式</h3>
-  <p>deep 深度样式 + v-bind绑定样式</p>
-  <div><Home></Home></div>
+    <!-- vue3组件通信---自定义事件  子---父   -->
+    <!-- vue3给组件绑定的事件默认都是dom事件。dom事件存在click点击事件，因此会触发 -->
+    <p>自定义事件----绑定dom事件</p>
+    <Sonemit @click="say"></Sonemit>
+    <hr />
+    <!-- 
+       注意： 
+      dom不存在updateAge事件，因此不会触发。
+      需要在子组件中的 emits 声明接收，然后通过 this.$emit('xxx'，data) 触发
+    -->
+    <p>自定义事件---绑定自定义事件</p>
+    <p>{{ age }}</p>
+    <Sonemit @updateAge="updateAge"></Sonemit>
+  </div>
 </template>
 <script lang="ts">
 import Home from './home.vue';
+import Sonemit from './sonemit.vue';
 
 export default {
   name: 'App',
-  components: { Home },
+  components: { Home, Sonemit },
   data() {
     return {
-      colorObj: true,
-      colorArray: false,
-      bindColor: 'purple',
+      list: [1, 2, 3, 4, 5],
+      age: 20,
     };
   },
   methods: {
-    changeObj() {
-      this.colorObj = !this.colorObj;
+    say() {
+      console.log('hi');
+    },
+    updateAge(value: number) {
+      console.log('收到了修改信息', value);
+      this.age += value;
     },
   },
 };
 </script>
-<style scoped>
-.color {
-  font-size: 18px;
-  font-weight: bold;
-}
-.color_red {
-  color: red;
-}
-.color_green {
-  color: green;
-}
-
-.colorString {
-  color: yellow;
-}
-
-:deep(.home) {
-  color: blue;
-  font-weight: bolder;
-  font-size: 20px;
-}
-
-:deep(.bindcss) {
-  color: v-bind(bindColor);
-  font-size: 30px;
-  font-weight: bold;
-}
-</style>
+<style scoped></style>

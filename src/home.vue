@@ -1,11 +1,22 @@
 <template>
-  <div class="home">home</div>
-  <div class="bindcss">v-bind绑定样式</div>
+  <div>{{ list }}</div>
 </template>
 
 <script lang="ts">
 export default {
   name: 'Home',
+  props: {
+    list: {
+      type: Array,
+      default: () => [],
+    },
+  },
+  data() {
+    return {};
+  },
+  mounted() {
+    console.log(this);
+  },
 };
 </script>
 
