@@ -1,0 +1,19 @@
+{
+  // 编译器选项
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true, // 从 Vite v2.5.0 开始，如果 TypeScript的target是 ESNext 或 ES2022 及更新版本，此选项默认值则为 true
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "jsx": "preserve",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext", "DOM"],
+    "skipLibCheck": true,
+    "noEmit": true
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
