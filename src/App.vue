@@ -21,14 +21,26 @@ import Header from './views/header.vue';
 import List from './views/list/index.vue';
 import Footer from './views/footer.vue';
 
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 //引入数据类型
 import type { TodoList, TodoItem } from './type';
 // 定义数据
-const todoList = ref<TodoList>([
-  { id: 1, title: '吃饭', isDone: false },
-  { id: 2, title: '看剧', isDone: true },
-]);
+const todoList = ref<TodoList>(
+  JSON.parse(localStorage.getItem('todolist') as string) || []
+);
+
+// 监听todolist，缓存数据
+watch(
+  todoList,
+  (data) => {
+    localStorage.setItem('todolist', JSON.stringify(todoList.value));
+    console.log('watch', data);
+  },
+  {
+    immediate: true,
+    deep: true,
+  }
+);
 
 // 添加todo
 const addTodo = (title: string) => {
