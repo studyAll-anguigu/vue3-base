@@ -7,6 +7,11 @@
     <button class="btn btn-danger" style="display: none">删除</button>
   </li>
 </template>
+<script lang="ts">
+export default {
+  name: 'Item',
+};
+</script>
 <script setup lang="ts">
 import { defineProps } from 'vue';
 import type { TodoItem } from '../../../type';
@@ -50,5 +55,8 @@ li:before {
 
 li:last-child {
   border-bottom: none;
+}
+li:hover {
+  background: #eee;
 }
 </style>

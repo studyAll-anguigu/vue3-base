@@ -2,7 +2,7 @@
   <div class="todo-container">
     <div class="todo-wrap">
       <Header @addTodo="addTodo" />
-      <List :todoList="todoList" />
+      <List :todoList="todoList" @updateOneChecked="updateOneChecked" />
       <Footer />
     </div>
   </div>
@@ -16,7 +16,10 @@ import { ref } from 'vue';
 //引入数据类型
 import type { TodoList } from './type';
 // 定义数据
-const todoList = ref<TodoList>([{ id: 1, title: '吃饭', isDone: false }]);
+const todoList = ref<TodoList>([
+  { id: 1, title: '吃饭', isDone: false },
+  { id: 1, title: '看剧', isDone: true },
+]);
 
 // 添加todo
 const addTodo = (title: string) => {
@@ -25,6 +28,11 @@ const addTodo = (title: string) => {
     title: title,
     isDone: false,
   });
+};
+
+// 单个复选状态改变
+const updateOneChecked = (id: number) => {
+  console.log(id);
 };
 </script>
 <style scoped>

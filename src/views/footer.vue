@@ -7,6 +7,11 @@
     <button class="btn btn-danger">清除已完成任务</button>
   </div>
 </template>
+<script lang="ts">
+export default {
+  name: 'Footer',
+};
+</script>
 <script setup lang="ts"></script>
 <style scoped>
 /*footer*/

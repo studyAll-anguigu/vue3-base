@@ -8,6 +8,11 @@
     />
   </div>
 </template>
+<script lang="ts">
+export default {
+  name: 'Header',
+};
+</script>
 <script setup lang="ts">
 import { ref, defineEmits } from 'vue';
 
@@ -20,7 +25,7 @@ const emit = defineEmits(['addTodo']);
 // 定义回调函数，setup语法糖中，声明即暴露
 const handlAddTodo = () => {
   if (!title.value) return;
-  emit('addTodo', title.value); // 触发滴定仪数据
+  emit('addTodo', title.value); // 触发自定义事件，同时app添加数据
   title.value = ''; //   清空输入框
 };
 </script>
