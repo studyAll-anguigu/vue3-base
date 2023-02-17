@@ -1,10 +1,10 @@
 <template>
   <li>
     <label>
-      <input type="checkbox" :checked="todo.isDone" />
+      <input type="checkbox" v-model="isChecked" />
       <span>{{ todo.title }}</span>
     </label>
-    <button class="btn btn-danger" style="display: none">删除</button>
+    <button class="btn btn-danger">删除</button>
   </li>
 </template>
 <script lang="ts">
@@ -13,15 +13,30 @@ export default {
 };
 </script>
 <script setup lang="ts">
-import { defineProps } from 'vue';
+import { defineProps, defineEmits, computed } from 'vue';
 import type { TodoItem } from '../../../type';
-
-// ts的写法;
-defineProps<{
+// 声明就接受属性
+const props = defineProps<{
   todo: TodoItem;
 }>();
+
+// 声明接收自定义事件,返回自定义事件回调函数.
+// 注意接收到的事件名一定要借助调试工具里面看名字是什么。
+// 这里前面有个on，是因为在list组件直接使用v-on='$attrs',这样会自动在事件名前面加一个on。
+// 然后到了这里再监听一下的话，就会再次再前面加一个 on
+const emit = defineEmits(['onUpdateOneChecked']);
+
+// 定义一个计算属性。可读可写（对象形式）
+const isChecked = computed({
+  get() {
+    return props.todo.isDone;
+  },
+  set() {
+    emit('onUpdateOneChecked', props.todo.id);
+  },
+});
 </script>
-<style scoped>
+<style scoped lang="less">
 /*item*/
 li {
   list-style: none;
@@ -58,5 +73,8 @@ li:last-child {
 }
 li:hover {
   background: #eee;
+  button {
+    display: block;
+  }
 }
 </style>

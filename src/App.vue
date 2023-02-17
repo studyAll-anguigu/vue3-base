@@ -14,11 +14,11 @@ import Footer from './views/footer.vue';
 
 import { ref } from 'vue';
 //引入数据类型
-import type { TodoList } from './type';
+import type { TodoList, TodoItem } from './type';
 // 定义数据
 const todoList = ref<TodoList>([
   { id: 1, title: '吃饭', isDone: false },
-  { id: 1, title: '看剧', isDone: true },
+  { id: 2, title: '看剧', isDone: true },
 ]);
 
 // 添加todo
@@ -32,7 +32,8 @@ const addTodo = (title: string) => {
 
 // 单个复选状态改变
 const updateOneChecked = (id: number) => {
-  console.log(id);
+  const todo = todoList.value.find((item) => item.id === id) as TodoItem;
+  todo.isDone = !todo.isDone;
 };
 </script>
 <style scoped>

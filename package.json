@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "less-loader": "^11.1.0",
     "mitt": "^3.0.0",
     "vue": "^3.2.45",
     "vuex": "^4.1.0"
