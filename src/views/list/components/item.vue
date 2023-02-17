@@ -1,13 +1,21 @@
 <template>
   <li>
     <label>
-      <input type="checkbox" />
-      <span>yyyy</span>
+      <input type="checkbox" :checked="todo.isDone" />
+      <span>{{ todo.title }}</span>
     </label>
     <button class="btn btn-danger" style="display: none">删除</button>
   </li>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { defineProps } from 'vue';
+import type { TodoItem } from '../../../type';
+
+// ts的写法;
+defineProps<{
+  todo: TodoItem;
+}>();
+</script>
 <style scoped>
 /*item*/
 li {

@@ -1,10 +1,17 @@
 <template>
   <ul class="todo-main">
-    <Item />
+    <Item v-for="todo in todoList" :key="todo.id" :todo="todo" />
   </ul>
 </template>
 <script setup lang="ts">
 import Item from './components/item.vue';
+import { defineProps } from 'vue';
+import type { TodoList } from '../../type';
+// 声明接收props
+
+defineProps<{
+  todoList: TodoList;
+}>();
 </script>
 <style scoped>
 /*main*/
