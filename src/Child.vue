@@ -1,20 +1,29 @@
 <template>
   <div>child</div>
-  <div>{{ childPerson }}</div>
 </template>
 <script lang="ts">
+// 引入emitter全局事件的对象
+import emitter from './utils/mitt';
+
 export default {
   name: 'Child',
-  // 注入, 接收来自上层组件(父组件或祖先组件)提供的数据
-  inject: ['person'],
   data() {
     return {
-      // 因为注入是在组件解析之前执行的,因此这个阶段可以拿到inject的数据
-      childPerson: this.person,
+      person: {
+        name: '张三',
+        age: 20,
+        sex: 'male',
+      },
     };
   },
   mounted() {
-    console.log('app组件提供的person数据', this.childPerson);
+    console.log('child mounted');
+    // 触发事件(发布数据)
+    emitter.emit('person', {
+      name: '张三',
+      age: 20,
+      sex: 'male',
+    });
   },
 };
 </script>
