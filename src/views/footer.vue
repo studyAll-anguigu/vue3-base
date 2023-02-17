@@ -1,9 +1,11 @@
 <template>
   <div class="todo-footer">
     <label>
-      <input type="checkbox" />
+      <input type="checkbox" v-model="isAllChecked" />
     </label>
-    <span> <span>已完成0</span> / 全部2 </span>
+    <span>
+      <span>已完成 {{ isDoneTotal }}</span> / 全部 {{ total }}
+    </span>
     <button class="btn btn-danger">清除已完成任务</button>
   </div>
 </template>
@@ -12,7 +14,22 @@ export default {
   name: 'Footer',
 };
 </script>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { defineProps, defineEmits, computed } from 'vue';
+
+const props = defineProps(['isDoneTotal', 'total']);
+const emit = defineEmits(['updateAllChecked']);
+
+// 是否全选
+const isAllChecked = computed({
+  get() {
+    return props.isDoneTotal === props.total && props.total > 0;
+  },
+  set(target) {
+    emit('updateAllChecked', target);
+  },
+});
+</script>
 <style scoped>
 /*footer*/
 .todo-footer {
