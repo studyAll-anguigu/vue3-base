@@ -2,7 +2,11 @@
   <div class="todo-container">
     <div class="todo-wrap">
       <Header @addTodo="addTodo" />
-      <List :todoList="todoList" @updateOneChecked="updateOneChecked" />
+      <List
+        :todoList="todoList"
+        @updateOneChecked="updateOneChecked"
+        @delOneTodo="delOneTodo"
+      />
       <Footer />
     </div>
   </div>
@@ -34,6 +38,11 @@ const addTodo = (title: string) => {
 const updateOneChecked = (id: number) => {
   const todo = todoList.value.find((item) => item.id === id) as TodoItem;
   todo.isDone = !todo.isDone;
+};
+
+// 删除一个todo
+const delOneTodo = (id: number) => {
+  todoList.value = todoList.value.filter((item) => item.id !== id);
 };
 </script>
 <style scoped>

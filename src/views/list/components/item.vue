@@ -4,7 +4,7 @@
       <input type="checkbox" v-model="isChecked" />
       <span>{{ todo.title }}</span>
     </label>
-    <button class="btn btn-danger">删除</button>
+    <button class="btn btn-danger" @click="handleDelete">删除</button>
   </li>
 </template>
 <script lang="ts">
@@ -24,7 +24,7 @@ const props = defineProps<{
 // 注意接收到的事件名一定要借助调试工具里面看名字是什么。
 // 这里前面有个on，是因为在list组件直接使用v-on='$attrs',这样会自动在事件名前面加一个on。
 // 然后到了这里再监听一下的话，就会再次再前面加一个 on
-const emit = defineEmits(['onUpdateOneChecked']);
+const emit = defineEmits(['onUpdateOneChecked', 'onDelOneTodo']);
 
 // 定义一个计算属性。可读可写（对象形式）
 const isChecked = computed({
@@ -35,6 +35,11 @@ const isChecked = computed({
     emit('onUpdateOneChecked', props.todo.id);
   },
 });
+
+// 删除一个todo
+const handleDelete = () => {
+  emit('onDelOneTodo', props.todo.id);
+};
 </script>
 <style scoped lang="less">
 /*item*/
