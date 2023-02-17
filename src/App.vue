@@ -11,6 +11,7 @@
         :isDoneTotal="isDoneTotal"
         :total="total"
         @updateAllChecked="updateAllChecked"
+        @batchDelTodo="batchDelTodo"
       />
     </div>
   </div>
@@ -66,6 +67,10 @@ const isDoneTotal = computed(() => {
 const updateAllChecked = (target: boolean) => {
   console.log(target);
   todoList.value.forEach((item) => (item.isDone = target));
+};
+// 批量删除todo
+const batchDelTodo = () => {
+  todoList.value = todoList.value.filter((item) => !item.isDone);
 };
 </script>
 <style scoped>

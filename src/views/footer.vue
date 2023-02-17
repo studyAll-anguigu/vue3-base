@@ -6,7 +6,13 @@
     <span>
       <span>已完成 {{ isDoneTotal }}</span> / 全部 {{ total }}
     </span>
-    <button class="btn btn-danger">清除已完成任务</button>
+    <button
+      class="btn btn-danger"
+      v-show="isDoneTotal"
+      @click="handelBatchDelTodo"
+    >
+      清除已完成任务
+    </button>
   </div>
 </template>
 <script lang="ts">
@@ -18,17 +24,23 @@ export default {
 import { defineProps, defineEmits, computed } from 'vue';
 
 const props = defineProps(['isDoneTotal', 'total']);
-const emit = defineEmits(['updateAllChecked']);
+const emit = defineEmits(['updateAllChecked', 'batchDelTodo']);
 
 // 是否全选
 const isAllChecked = computed({
   get() {
+    // 已完成 = 总任务 && total>0
     return props.isDoneTotal === props.total && props.total > 0;
   },
   set(target) {
     emit('updateAllChecked', target);
   },
 });
+
+// 批量删除todo
+const handelBatchDelTodo = () => {
+  emit('batchDelTodo');
+};
 </script>
 <style scoped>
 /*footer*/
