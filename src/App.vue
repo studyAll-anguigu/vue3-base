@@ -1,7 +1,7 @@
 <template>
   <div class="todo-container">
     <div class="todo-wrap">
-      <Header />
+      <Header @addTodo="addTodo" />
       <List :todoList="todoList" />
       <Footer />
     </div>
@@ -17,6 +17,15 @@ import { ref } from 'vue';
 import type { TodoList } from './type';
 // 定义数据
 const todoList = ref<TodoList>([{ id: 1, title: '吃饭', isDone: false }]);
+
+// 添加todo
+const addTodo = (title: string) => {
+  todoList.value.push({
+    id: Date.now(),
+    title: title,
+    isDone: false,
+  });
+};
 </script>
 <style scoped>
 /*app*/

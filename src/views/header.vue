@@ -1,9 +1,29 @@
 <template>
   <div class="todo-header">
-    <input type="text" placeholder="请输入你的任务名称，按回车键确认" />
+    <input
+      type="text"
+      placeholder="请输入你的任务名称，按回车键确认"
+      v-model.trim="title"
+      @keyup.enter="handlAddTodo"
+    />
   </div>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref, defineEmits } from 'vue';
+
+// 定义ref数据
+const title = ref('');
+
+// 在组合式API中 声明接收自定义事件
+const emit = defineEmits(['addTodo']);
+
+// 定义回调函数，setup语法糖中，声明即暴露
+const handlAddTodo = () => {
+  if (!title.value) return;
+  emit('addTodo', title.value); // 触发滴定仪数据
+  title.value = ''; //   清空输入框
+};
+</script>
 <style scoped>
 /*header*/
 .todo-header input {
