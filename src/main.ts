@@ -1,5 +1,8 @@
 import { createApp } from "vue";
 import App from './App.vue'
-import './styles/commond.css'
 
-createApp(App).mount('#app')
+// 引入store
+// 名字可以随便取
+import store from './store/index' 
+
+createApp(App).use(store).mount('#app')
