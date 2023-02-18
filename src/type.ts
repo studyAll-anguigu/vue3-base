@@ -1,8 +1,7 @@
-// 声明类型
-
-export interface TodoItem{
-  id:number,
+export interface TodoItem {
+  _id:number,
   title:string,
   isDone:boolean
 }
-export type TodoList = TodoItem[]
+
+export type Todolist = TodoItem[]

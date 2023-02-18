@@ -1,30 +1,26 @@
 <template>
-  <!-- 访问 store中的state数据 -->
-  <p>{{ userStore.person.firstName }}</p>
-  <p>{{ userStore.person.lastName }}</p>
-  <!-- 访问store中的getter数据 -->
-  <p>{{ userStore.fullName }}</p>
-
-  <p>{{ userStore.person.age }} 岁</p>
-  <button @click="addAge">年龄+1</button>
+  <div class="todo-container">
+    <div class="todo-wrap">
+      <Header></Header>
+      <List></List>
+      <Footer></Footer>
+    </div>
+  </div>
 </template>
-
-<script lang="ts">
-export default {
-  name: 'App',
-};
+<script setup lang="ts">
+import Header from './views/header.vue';
+import List from './views/list/index.vue';
+import Footer from './views/footer.vue';
 </script>
-
-<script lang="ts" setup>
-import { useUserStore } from './store/modules/user';
-
-const userStore = useUserStore();
-console.log('user', userStore);
-
-// 添加年龄 (通过回调函数)
-const addAge = () => {
-  userStore.addAge();
-};
-</script>
-
-<style scoped></style>
+<style scoped>
+/*app*/
+.todo-container {
+  width: 600px;
+  margin: 0 auto;
+}
+.todo-container .todo-wrap {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+</style>
