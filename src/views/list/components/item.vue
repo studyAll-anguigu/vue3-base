@@ -32,7 +32,7 @@ defineProps<{
 
 // 更新todo状态
 const handelUpdateTodo = async (_id: number, isDone: boolean) => {
-  await updateOneTodoAPi(_id, isDone);
+  await todolistStore.updateOnetodo(_id, isDone);
 };
 
 // 删除todo   通过store是方法修改
