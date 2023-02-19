@@ -26,3 +26,12 @@ export const delOneTodoAPi = async (_id: number) => {
     },
   });
 };
+
+// 批量删除
+export const batchDelTodoApi = async (todoIdList: number[]) => {
+  return await axios.delete('/api/batchDelTodo', {
+    data: {
+      todoIdList,
+    },
+  });
+};

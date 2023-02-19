@@ -22,7 +22,6 @@ import { defineProps } from 'vue';
 import { TodoItem } from '../../../type';
 
 import { useTodolistStore } from '../../../store/modules/todolist';
-import { updateOneTodoAPi } from '../../../api/index';
 
 const todolistStore = useTodolistStore();
 

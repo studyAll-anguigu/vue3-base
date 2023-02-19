@@ -66,3 +66,16 @@ app.delete('/delonetodo', async (req, res) => {
     data: null,
   });
 });
+
+// 批量删除
+app.delete('/batchDelTodo', async (req, res) => {
+  // 拿到id列表
+  const { todoIdList } = req.body;
+  await todoList.deleteMany({ _id: { $in: todoIdList } });
+  res.json({
+    code: 200,
+    message: '',
+    success: 'ok',
+    data: null,
+  });
+});

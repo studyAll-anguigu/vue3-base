@@ -4,12 +4,23 @@
       <input type="checkbox" />
     </label>
     <span> <span>已完成 1</span> / 全部 1 </span>
-    <button class="btn btn-danger">清除已完成任务</button>
+    <button class="btn btn-danger" @click="handleBatchDel">
+      清除已完成任务
+    </button>
   </div>
 </template>
 <script lang="ts">
 export default {
   name: 'Footer',
+};
+</script>
+<script setup lang="ts">
+import { useTodolistStore } from '../store/modules/todolist';
+
+const todolistStore = useTodolistStore();
+// 批量删除
+const handleBatchDel = async () => {
+  await todolistStore.batchDelTodo();
 };
 </script>
 <style scoped>
