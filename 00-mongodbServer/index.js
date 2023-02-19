@@ -39,3 +39,18 @@ app.post('/addtodo', async (req, res) => {
     data: null,
   });
 });
+
+// 修改todo
+// 语法 ： db.collection.updateOne(filter, update, options)
+// db.todolists.updateOne({title:'你好'},{$set:{ title: '你好3333'}})
+app.put('/updateone', async (req, res) => {
+  const { _id } = req.body;
+  const isDone = !req.body.isDone;
+  await todoList.updateOne({ _id }, { $set: { isDone: isDone } });
+  res.json({
+    code: 200,
+    message: 'sucess',
+    success: 'ok',
+    data: null,
+  });
+});

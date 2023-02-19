@@ -11,3 +11,8 @@ export const getTodoListApi = async () => {
 export const addTodoApi = async (title: string) => {
   return await axios.post('/api/addtodo', { title: title });
 };
+
+// 更新todo
+export const updateOneTodoAPi = async (_id: number, isDone: boolean) => {
+  return await axios.put('/api/updateone', { _id, isDone });
+};

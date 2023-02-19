@@ -1,7 +1,11 @@
 <template>
   <li>
     <label>
-      <input type="checkbox" :checked="todo.isDone" />
+      <input
+        type="checkbox"
+        :checked="todo.isDone"
+        @change="handelUpdateTodo(todo._id, todo.isDone)"
+      />
       <span>{{ todo.title }}</span>
     </label>
     <button class="btn btn-danger">删除</button>
@@ -17,9 +21,18 @@ export default {
 import { defineProps } from 'vue';
 import { TodoItem } from '../../../type';
 
+import { useTodolistStore } from '../../../store/modules/todolist';
+import { updateOneTodoAPi } from '../../../api/index';
+
+const todolistStore = useTodolistStore();
+
 defineProps<{
   todo: TodoItem;
 }>();
+
+const handelUpdateTodo = async (_id: number, isDone: boolean) => {
+  await updateOneTodoAPi(_id, isDone);
+};
 </script>
 
 <style scoped lang="less">
