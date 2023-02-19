@@ -5,6 +5,7 @@ import express from 'express';
 import todoList from './db/index.js';
 // 创建app对象
 const app = express();
+app.use(express.json());
 
 // 启动服务
 app.listen(3000, (err, data) => {
@@ -20,5 +21,21 @@ app.get('/todoList', async (req, res) => {
     message: '',
     success: 'ok',
     data: response,
+  });
+});
+
+// 添加todo
+app.post('/addtodo', async (req, res) => {
+  // 获取请求参数 .post 请求，一般是body参数。
+  // node默认解析不了body参数。需要注册中间.否则把不到参数
+  const { title } = req.body;
+  await todoList.create({ title }, (err) => {
+    if (err) res.send(err);
+  });
+  res.json({
+    code: 200,
+    message: 'sucess',
+    success: 'ok',
+    data: null,
   });
 });
