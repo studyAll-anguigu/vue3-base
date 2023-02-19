@@ -7,12 +7,13 @@ import {
   updateOneTodoAPi,
   delOneTodoAPi,
   batchDelTodoApi,
+  batchUpdateTodoApi,
 } from '../../api/index';
 
 interface TodolistStore {
   todoList: Todolist;
   ids?: Array<number>;
-  // ischeckedIdList?: number[];
+  ischeckedTodoIdList?: number[];
 }
 
 export const useTodolistStore = defineStore('todoList', {
@@ -23,16 +24,18 @@ export const useTodolistStore = defineStore('todoList', {
     };
   },
   getters: {
+    // 底部全选按钮
+    isAllcheck: (state) => {
+      return state.todoList.every((item) => item.isDone);
+    },
     // 已选todo的id列表
     ischeckedTodoIdList: (state) => {
       if (!state.todoList.length) return;
-
       let idlist: number[] = [];
       state.todoList.forEach((item) => {
         if (!item.isDone) return;
         idlist.push(item._id);
       });
-
       return idlist;
     },
   },
@@ -67,6 +70,13 @@ export const useTodolistStore = defineStore('todoList', {
     async batchDelTodo() {
       const idslist = this.ischeckedTodoIdList as number[];
       await batchDelTodoApi(idslist);
+      this.getTodoList();
+    },
+
+    // 批量修改todo，全选，全不选
+    async batchUpdateTodo() {
+      const idlist = this.todoList.map((item) => item._id);
+      await batchUpdateTodoApi(idlist, this.isAllcheck);
       this.getTodoList();
     },
   },

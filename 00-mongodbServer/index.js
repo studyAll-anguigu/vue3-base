@@ -55,6 +55,18 @@ app.put('/updateone', async (req, res) => {
   });
 });
 
+// 批量修改todo,全选、全不选
+app.put('/batchUpdateTodo', async (req, res) => {
+  const { todoIdList, isDone } = req.body;
+  await todoList.updateMany({ _id: { $in: todoIdList } }, { $set: { isDone } });
+  res.json({
+    code: 200,
+    message: '',
+    success: 'ok',
+    data: null,
+  });
+});
+
 // 删除单个todo
 app.delete('/delonetodo', async (req, res) => {
   const { _id } = req.body;

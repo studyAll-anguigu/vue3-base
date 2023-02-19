@@ -1,9 +1,16 @@
 <template>
   <div class="todo-footer">
     <label>
-      <input type="checkbox" />
+      <input
+        type="checkbox"
+        :checked="todolistStore.isAllcheck"
+        @change="handelBatchUpdate"
+      />
     </label>
-    <span> <span>已完成 1</span> / 全部 1 </span>
+    <span>
+      <span>已完成 {{ todolistStore.ischeckedTodoIdList?.length }}</span> / 全部
+      {{ todolistStore.todoList.length }}
+    </span>
     <button class="btn btn-danger" @click="handleBatchDel">
       清除已完成任务
     </button>
@@ -21,6 +28,11 @@ const todolistStore = useTodolistStore();
 // 批量删除
 const handleBatchDel = async () => {
   await todolistStore.batchDelTodo();
+};
+
+// 全选，全不选
+const handelBatchUpdate = async () => {
+  await todolistStore.batchUpdateTodo();
 };
 </script>
 <style scoped>

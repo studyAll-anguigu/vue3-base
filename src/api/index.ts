@@ -18,6 +18,15 @@ export const updateOneTodoAPi = async (_id: number, isDone: boolean) => {
   return await axios.put<responseType<null>>('/api/updateone', { _id, isDone });
 };
 
+// 批量更新，全选 、全不选
+export const batchUpdateTodoApi = async (
+  todoIdList: number[],
+  target: boolean
+) => {
+  const isDone = !target;
+  return await axios.put('/api/batchUpdateTodo', { todoIdList, isDone });
+};
+
 // 删除todo
 export const delOneTodoAPi = async (_id: number) => {
   return await axios.delete<responseType<null>>('/api/delonetodo', {
