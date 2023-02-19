@@ -37,7 +37,6 @@ const handelUpdateTodo = async (_id: number, isDone: boolean) => {
 
 // 删除todo   通过store是方法修改
 const delTodo = async (_id: number) => {
-  console.log('触发了删除点击事件', typeof _id);
   await todolistStore.delOneTodo(_id);
 };
 </script>

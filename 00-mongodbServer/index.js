@@ -56,10 +56,8 @@ app.put('/updateone', async (req, res) => {
 });
 
 // 删除单个todo
-app.post('/delonetodo', async (req, res) => {
-  console.log(req.body);
+app.delete('/delonetodo', async (req, res) => {
   const { _id } = req.body;
-  console.log('数据库中收到的id', _id, typeof _id);
   await todoList.deleteOne({ _id });
   res.json({
     code: 200,

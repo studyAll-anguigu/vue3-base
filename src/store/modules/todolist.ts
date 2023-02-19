@@ -40,7 +40,6 @@ export const useTodolistStore = defineStore('todoList', {
 
     // 删除todo
     async delOneTodo(_id: number) {
-      console.log('modules中收到的id', _id, typeof _id);
       await delOneTodoAPi(_id);
       this.getTodoList();
     },

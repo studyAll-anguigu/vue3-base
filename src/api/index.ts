@@ -20,6 +20,9 @@ export const updateOneTodoAPi = async (_id: number, isDone: boolean) => {
 
 // 删除todo
 export const delOneTodoAPi = async (_id: number) => {
-  console.log('api函数中收到的id', _id, typeof _id);
-  return await axios.post<responseType<null>>('/api/delonetodo', { _id });
+  return await axios.delete<responseType<null>>('/api/delonetodo', {
+    data: {
+      _id,
+    },
+  });
 };
