@@ -26,7 +26,9 @@ export const useTodolistStore = defineStore('todoList', {
   getters: {
     // 底部全选按钮
     isAllcheck: (state) => {
-      return state.todoList.every((item) => item.isDone);
+      return (
+        state.todoList.every((item) => item.isDone) && state.todoList.length > 0
+      );
     },
     // 已选todo的id列表
     ischeckedTodoIdList: (state) => {
