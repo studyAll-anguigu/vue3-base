@@ -8,7 +8,7 @@
       />
       <span>{{ todo.title }}</span>
     </label>
-    <button class="btn btn-danger">删除</button>
+    <button class="btn btn-danger" @click="delTodo(todo._id)">删除</button>
   </li>
 </template>
 <script lang="ts">
@@ -30,8 +30,15 @@ defineProps<{
   todo: TodoItem;
 }>();
 
+// 更新todo状态
 const handelUpdateTodo = async (_id: number, isDone: boolean) => {
   await updateOneTodoAPi(_id, isDone);
+};
+
+// 删除todo   通过store是方法修改
+const delTodo = async (_id: number) => {
+  console.log('触发了删除点击事件', typeof _id);
+  await todolistStore.delOneTodo(_id);
 };
 </script>
 

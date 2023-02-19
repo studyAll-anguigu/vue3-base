@@ -1,7 +1,12 @@
 // 定义store
 import { defineStore } from 'pinia';
 import type { Todolist } from '../../type';
-import { getTodoListApi, addTodoApi, updateOneTodoAPi } from '../../api/index';
+import {
+  getTodoListApi,
+  addTodoApi,
+  updateOneTodoAPi,
+  delOneTodoAPi,
+} from '../../api/index';
 
 interface TodolistStore {
   todoList: Todolist;
@@ -31,6 +36,13 @@ export const useTodolistStore = defineStore('todoList', {
     async updateOnetodo(_id: number, isDone: boolean) {
       await updateOneTodoAPi(_id, isDone);
       this.getTodoList(); // 更新列表
+    },
+
+    // 删除todo
+    async delOneTodo(_id: number) {
+      console.log('modules中收到的id', _id, typeof _id);
+      await delOneTodoAPi(_id);
+      this.getTodoList();
     },
   },
 });
