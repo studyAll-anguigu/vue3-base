@@ -1,26 +1,29 @@
+<!-- 
+  总结：
+  路由： 一级路由，嵌套路由
+  动态路由
+  路由参数： params，query，meta
+  路由缓存
+  路由守卫
+  。。。
+ -->
 <template>
-  <div class="todo-container">
-    <div class="todo-wrap">
-      <Header></Header>
-      <List></List>
-      <Footer></Footer>
-    </div>
+  <div>
+    <h1>App</h1>
+    <router-link to="/home">Home</router-link> &nbsp;
+    <router-link :to="{ name: 'List' }">List</router-link>
+    <br /><br />
+    <!-- 以及路由组件出口 -->
+    <router-view></router-view>
   </div>
 </template>
-<script setup lang="ts">
-import Header from './views/header.vue';
-import List from './views/list/index.vue';
-import Footer from './views/footer.vue';
+
+<script lang="ts">
+export default {
+  name: 'App',
+};
 </script>
-<style scoped>
-/*app*/
-.todo-container {
-  width: 600px;
-  margin: 0 auto;
-}
-.todo-container .todo-wrap {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-</style>
+
+<script lang="ts" setup></script>
+
+<style scoped></style>
