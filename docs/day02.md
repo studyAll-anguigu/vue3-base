@@ -508,6 +508,7 @@ export default {
   },
   getters: {},
   actions: {
+    // ActionContext<当前模块state数据类型, 整个vuex管理所有state数据类型>
     increment({ commit }: ActionContext<Counter, State>, val: number) {
       commit("INCREMENT", val);
     },
