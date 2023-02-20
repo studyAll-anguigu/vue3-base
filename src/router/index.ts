@@ -30,4 +30,22 @@ const router = createRouter({
   routes,
 });
 
+/**
+ * 路由导航守卫
+ * 类型：
+ *  全局路由守卫
+ *     前置导航守卫  : 用的比较多
+ *     解析导航守卫
+ *     后置守卫
+ *  路由独享导航守卫 ：用的比较少
+ *  组件内路由导航首位
+ *
+ * 作用：通常用来做权限验证
+ * **/
+router.beforeEach((to, from, next) => {
+  console.log(to);
+  document.title = to.name as string;
+  next();
+});
+
 export default router;
