@@ -1,5 +1,6 @@
 <template>
   <div>
+    <br /><br />
     <div>List</div>
     <ul>
       <router-link :to="{ name: 'Detail', params: { id: 1 } }"
@@ -18,6 +19,7 @@
         >message</router-link
       ><br />
     </ul>
+    <!-- 下一级路由组件的出口  -->
     <router-view></router-view>
   </div>
 </template>

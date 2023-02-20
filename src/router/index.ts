@@ -18,6 +18,11 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/search',
+    component: () => import('../components/search.vue'),
+    name: 'Search',
+  },
 ];
 
 const router = createRouter({
