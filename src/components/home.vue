@@ -1,8 +1,10 @@
 <template>
-  <br /><br />
-  <div>Home</div>
-  <!-- 获取路由参数： query查询字符串参数  -->
-  <p>首页---{{ route.query.name }}</p>
+  <div>
+    <br /><br />
+    <div>Home</div>
+    <!-- 获取路由参数： query查询字符串参数  -->
+    <p>首页---{{ route.query.name }}</p>
+  </div>
 </template>
 
 <script lang="ts">
