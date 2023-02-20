@@ -43,7 +43,6 @@ const router = createRouter({
  * 作用：通常用来做权限验证
  * **/
 router.beforeEach((to, from, next) => {
-  console.log(to);
   document.title = to.name as string;
   next();
 });

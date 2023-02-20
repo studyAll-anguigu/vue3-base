@@ -30,6 +30,15 @@ export default {
 };
 </script>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { onActivated, onDeactivated } from 'vue';
+
+onActivated(() => {
+  console.log('list active');
+});
+onDeactivated(() => {
+  console.log('list deactived');
+});
+</script>
 
 <style scoped></style>

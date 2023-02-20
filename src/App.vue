@@ -29,7 +29,12 @@
     </router-link>
 
     <!-- 一级路由组件出口 -->
-    <router-view></router-view>
+    <router-view v-slot="{ Component }">
+      <!-- 路由缓存,通过rjouter-view暴露一个v-slot -->
+      <keep-alive>
+        <component :is="Component"></component>
+      </keep-alive>
+    </router-view>
   </div>
 </template>
 
